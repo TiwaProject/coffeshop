@@ -1,19 +1,28 @@
-FROM ubuntu:18.04
+# Install Operating system and dependencies
+FROM ubuntu:20.04 AS build-env
+ENV DEBIAN_FRONTEND=noninteractive
 
-# Install dependencies
-RUN apt-get update && \
- apt-get -y install apache2
+RUN apt-get update
+RUN apt-get install -y curl git wget unzip libgconf-2-4 gdb libstdc++6 libglu1-mesa fonts-droid-fallback lib32stdc++6 python3
+RUN apt-get clean
 
-# Install apache and write hello world message
-RUN echo 'Hello World!' > /var/www/html/index.html
+# download Flutter SDK from Flutter Github repo
+RUN git clone https://github.com/flutter/flutter.git /usr/local/flutter
 
-# Configure apache
-RUN echo '. /etc/apache2/envvars' > /root/run_apache.sh && \
- echo 'mkdir -p /var/run/apache2' >> /root/run_apache.sh && \
- echo 'mkdir -p /var/lock/apache2' >> /root/run_apache.sh && \ 
- echo '/usr/sbin/apache2 -D FOREGROUND' >> /root/run_apache.sh && \ 
- chmod 755 /root/run_apache.sh
+# Set flutter environment path
+ENV PATH="/usr/local/flutter/bin:/usr/local/flutter/bin/cache/dart-sdk/bin:${PATH}"
 
-EXPOSE 80
+# Run flutter doctor
+RUN flutter doctor -v
 
-CMD /root/run_apache.sh
+# Copy files to container and build
+RUN mkdir /app/
+COPY . /app/
+WORKDIR /app/
+RUN flutter build web
+
+EXPOSE 4000
+
+# Stage 2 - Create the run-time image
+FROM nginx
+COPY --from=build-env /app/build/web /usr/share/nginx/html
