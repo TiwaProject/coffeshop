@@ -1,5 +1,5 @@
 {
-  "family": "project-fargate",
+  "family": "project-coffee-task-def",
   "networkMode": "awsvpc",
   "containerDefinitions": [
     {
@@ -18,7 +18,7 @@
   "requiresCompatibilities": [
     "FARGATE"
   ],
-  "executionRoleArn": "ecsTaskExecutionRole",
+
   "cpu": "256",
   "memory": "512"
 }
