@@ -34,7 +34,7 @@ class Coffee extends StatelessWidget {
           const Positioned(
             top: 70,
             child: Text(
-              "RATHGAR COFFEE SHOP",
+              "LAGOS COFFEE SHOP",
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
