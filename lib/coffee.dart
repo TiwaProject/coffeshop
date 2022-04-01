@@ -42,17 +42,6 @@ class Coffee extends StatelessWidget {
               ),
             ),
           ),
-          const Positioned(
-            top: 95,
-            child: Text(
-              "Coffee",
-              style: TextStyle(
-                fontSize: 50,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
-          ),
           Positioned(
             bottom: 50,
             child: SizedBox(
@@ -66,7 +55,7 @@ class Coffee extends StatelessWidget {
                 onPressed: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (_) => DetailPage(),
+                    builder: (_) => const DetailPage(),
                   ),
                 ),
                 child: const Text(

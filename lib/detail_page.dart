@@ -21,7 +21,7 @@ class DetailPage extends StatelessWidget {
                     onPressed: () => Navigator.pop(context),
                     icon: const Icon(
                       Icons.arrow_back,
-                      color: Colors.white,
+                      color: Colors.brown,
                     ),
                   ),
                   const Spacer(),
@@ -29,7 +29,7 @@ class DetailPage extends StatelessWidget {
                     onPressed: () {},
                     icon: const Icon(
                       Icons.search,
-                      color: Colors.white,
+                      color: Colors.brown,
                     ),
                   )
                 ],
@@ -38,7 +38,7 @@ class DetailPage extends StatelessWidget {
               decoration: const BoxDecoration(
                 image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: AssetImage("images/cappuccino.jpg"),
+                  image: AssetImage("images/coffee.webp"),
                 ),
               ),
             ),
